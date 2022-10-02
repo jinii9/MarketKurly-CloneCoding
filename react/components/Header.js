@@ -52,10 +52,9 @@ class Header extends Component {
                     {/* <div> */}
                         <ul className="nav-main">
                             <li className="menu"><span className="menu-text">신상품</span></li>
-                            {/* <li className="menu"><span className="menu-text"><a href="best.html" style="color: black;">베스트</a></span></li> */}
-                            {/* <Link to='./Login'> */}
+
                             <li className="menu"><span className="menu-text"><Link to='Best' style={{color:"black", textDecoration: "none"}}>베스트</Link></span></li>
-                            {/* </Link> */}
+
                             <li className="menu"><span className="menu-text">알뜰쇼핑</span></li>
                             <li className="menu"><span className="menu-text">특가/혜택</span></li>
                         </ul>
