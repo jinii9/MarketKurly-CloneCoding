@@ -14,11 +14,35 @@ class Product extends Component {
     //         }
     //     }
     // }
+
+    // state = {
+    //     id: '',
+    //     name: '',
+    //     image:'',
+    //     discountRate: '',
+    //     salesPrice: '',
+    //     dimmedPrice: '',
+    //     only: true, 
+    //     description: '매콤달콤한 매력의 밥도둑',
+        
+    //     check: false,
+    // }
+
     
+    // handleChange = (e) => { // e:이벤트 객체
+    //     this.setState({
+    //         [e.target.name]: e.target.value // 이벤트 target: input, value: 가지고 있는 value 값
+    //     });
+    // }
+    // handleSend = (e) => {
+    //     e.preventDefault();
+    //     this.props.onShow(this.state);
+    // }
+
     render() {
 
         const {id, name, image, discountRate, salesPrice, dimmedPrice} = this.props.info;
-
+        // this.props.onShow(this.state);
         return (
             <div className="swiper-slide">
                 <div className="swiper-slide-wrap">

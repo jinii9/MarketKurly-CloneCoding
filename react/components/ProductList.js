@@ -49,7 +49,8 @@ class ProductList extends Component {
                 discountRate: '25%',
                 salesPrice: '4,950원',
                 dimmedPrice: '12,900원',
-            },
+                delivery: '샛별배송',
+                only: true,            },
             {   
                 id: 1,
                 name: '[자연에찬] 강화순열무 나박김치',
@@ -57,6 +58,9 @@ class ProductList extends Component {
                 // discountRate: '25%',
                 salesPrice: '4,950원',
                 // dimmedPrice: '12,900원',
+                delivery: '샛별배송',
+                only: true, 
+                description: '매콤달콤한 매력의 밥도둑',
             },
             {   
                 id: 2,
@@ -65,6 +69,8 @@ class ProductList extends Component {
                 discountRate: '25%',
                 salesPrice: '4,950원',
                 dimmedPrice: '12,900원',
+                only: true, 
+                description: '매콤달콤한 매력의 밥도둑',
             },
             {   
                 id: 3,
@@ -73,6 +79,8 @@ class ProductList extends Component {
                 discountRate: '25%',
                 salesPrice: '4,950원',
                 dimmedPrice: '12,900원',
+                only: true, 
+                description: '매콤달콤한 매력의 밥도둑',
             },
             {   
                 id: 4,
@@ -81,10 +89,17 @@ class ProductList extends Component {
                 discountRate: '25%',
                 salesPrice: '4,950원',
                 dimmedPrice: '12,900원',
+                only: true, 
+                description: '매콤달콤한 매력의 밥도둑',
             },
         ]
     }
 
+    // handleDeliver = (e) => {
+    //     const test = "test";
+    //     e.preventDefault();
+    //     this.props.onLoad=(this.test);
+    // }
     render() {
         // 슬라이더 셋팅
         const settings = {
@@ -103,9 +118,11 @@ class ProductList extends Component {
             info => (<Product info={info} key={info.id} />)
         )
          
-        
+        console.log({list});
+
         return (
             
+            // <div onLoad={this.handleDeliver}>
             <div>
                 <Slider {...settings}>
                     {list}

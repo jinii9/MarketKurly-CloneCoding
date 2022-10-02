@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 
 import "./css/Home.css";
+import "./css/Best.css";
 
 class App extends Component {
   render() {

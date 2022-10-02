@@ -1,0 +1,207 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+/* 시작 */
+/* * {
+    display: block;
+} */
+body {
+    overflow-x: hidden; 
+
+}
+button, input {
+    border: none;
+    background-color:transparent;
+}
+a {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+
+/*###################### section ######################*/
+#section {
+    width: 1050px;
+    margin: 0px auto;
+    padding-top: 26px;
+}
+#section .best-text {
+    padding: 23px 0px 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: -1px;
+}
+.best-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0px 16px;
+    /* border: 1px solid black; */
+}
+.best-filter .total {
+    font-size: 12px;
+    font-weight: 500;
+}
+.best-filter .filter-kind {
+    display: flex;
+    align-items: center;
+    /* position: relative; */
+    /* border: 1px solid black; */
+}
+.filter-kind .kind-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 24px;
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    color: rgb(153, 153, 153);
+}
+.kind-item__info img {
+    vertical-align: top;
+}
+.filter-kind li:not(:nth-child(1))::before {
+    /* display: flex; */
+    
+    content: "";
+    width: 1px;
+    height: 10px;
+    margin-right: 8px;
+    /* margin-top: 10px; */
+    /* border: 1px solid gray; */
+    background-color: rgb(226, 226, 226);
+}
+.filter-kind li {
+    display: flex; /* bar막대기와 정렬시키기 */
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 8px;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    /* border: 1px solid black; */
+}
+.best-main {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1070px;
+    /* border: 1px solid black; */
+}
+.best-main .product-wrap {
+    flex: 0 0 338px; /* basis를 338px */
+    height: 682px;
+    margin-right: 16px;
+    /* border: 3px solid green; */
+}
+.product-wrap .image-wrap {
+    position: relative;
+    width: 338px;
+    height: 435px;
+    /* overflow: hidden; */
+}
+.product-wrap .image-wrap  > img {
+    width: 100%;
+    height: 100%;
+}
+.product-wrap .image-wrap button {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+}
+.product-wrap .info-wrap {
+    padding: 14px 10px 0px 0px;
+}
+.info-wrap .delivery {
+    padding-bottom: 2px;
+    font-size: 14px;
+    color: rgb(153, 153, 153);
+    line-height: 19px;
+    /* letter-spacing: -0.5px; */
+}
+.info-wrap .title {
+    /* overflow: hidden; */
+    margin-bottom: 9px;
+    max-height: 58px;
+    font-size: 20px;
+    line-height: 29px;
+}
+.info-wrap .price {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+}
+.info-wrap p {
+    padding-top: 12px;
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+    line-height: 18px;
+
+}
+.info-wrap .only-wrap {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 12px 10px 0px 0px;
+    cursor: default;
+}
+.only-wrap .only {
+    padding: 2px 8px 4px;
+    color: rgb(95, 0, 128);
+    background-color: rgb(244, 244, 244);
+    border-radius: 4px;
+    line-height: 16px;
+}
+
