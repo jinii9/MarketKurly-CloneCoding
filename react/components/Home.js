@@ -75,7 +75,7 @@ const Home = () => {
                         <div class="time-count">
                             <span class="time-count__img"></span>
                             {/* <span class="time-count__timer" id="timer"></span> */}
-                            <Timer />
+                            {/* <Timer /> */}
                         </div>
                         <p>망설이면 늦어요!</p>
                     </div>

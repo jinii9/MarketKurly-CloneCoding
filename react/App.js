@@ -6,6 +6,7 @@ import Login from './components/Login';
 
 import "./css/Home.css";
 import "./css/Best.css";
+import "./css/Login.css";
 
 class App extends Component {
   render() {
@@ -14,9 +15,9 @@ class App extends Component {
         <BrowserRouter>
           {/* <Home />   */}
           <Routes>
-            <Route exact path="/" element={<Home />}/>
-
+            <Route path="/" element={<Home />}/>
             <Route path="/Best" element={<Best />}/>
+            <Route path="/Login" element={<Login />}/>
           </Routes>
         </BrowserRouter>
         {/* <Home /> */}
