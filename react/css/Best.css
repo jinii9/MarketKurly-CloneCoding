@@ -70,12 +70,12 @@ a {
 
 
 /*###################### section ######################*/
-#section {
+#best-section {
     width: 1050px;
     margin: 0px auto;
     padding-top: 26px;
 }
-#section .best-text {
+#best-section .best-text {
     padding: 23px 0px 20px;
     text-align: center;
     font-weight: 500;
@@ -145,13 +145,14 @@ a {
     flex: 0 0 338px; /* basis를 338px */
     height: 682px;
     margin-right: 16px;
-    /* border: 3px solid green; */
+    /* border: 1px solid green; */
 }
 .product-wrap .image-wrap {
     position: relative;
     width: 338px;
     height: 435px;
     /* overflow: hidden; */
+    /* border: 3px solid black; */
 }
 .product-wrap .image-wrap  > img {
     width: 100%;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
+// import styles from '../css/Login.module.css';
 
 const Login = () => {
     console.log('로그인창');
@@ -13,6 +14,7 @@ const Login = () => {
 
             <div id="section">
                 <div className="login-text">로그인</div>
+                {/* <div className={styles.login-text}>로그인</div> */}
                 {/* <!-- <div className="login-wrap"> --> */}
                 <div className="form-wrap">
                     <form action="">

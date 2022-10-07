@@ -6,6 +6,7 @@ import Slide from './Slide';
 import Timer from './Timer';
 
 const Home = () => {
+    
     return (
         <div>
             <div>
@@ -13,7 +14,7 @@ const Home = () => {
             </div>
             
             {/* -----------------------------section-------------------------------- */}
-            <div id="section">
+            <div id="home-section">
                 <div type="MAIN-BANNERS" class="main-banner">
                     {/* <!-- 나중에 swiper 이용해서 바꿔줄 것 --> */}
                     <div class="main-banner__main">

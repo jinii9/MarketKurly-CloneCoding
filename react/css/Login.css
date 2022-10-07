@@ -301,7 +301,7 @@ a {
     margin-top: 90px; margin-bottom: 60px;
     /* border: 1px solid black; */
 }
-#section .login-text {
+.login-text {
     /* width: 1050px; */
     /* height: 100%; */
     margin: 0 auto;

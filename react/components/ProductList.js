@@ -1,10 +1,51 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 // 슬라이더 import
 import Slider from "react-slick";
 import './slick-carousel/slick/slick.css';
 import './slick-carousel/slick/slick-theme.css';
 // classnames
 import classnames from 'classnames';
+// 스켈레톤
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
+import dummyData from "../data";
+console.log(dummyData)
+
+function SkeletonCard () {
+    return (
+        <>
+            {Array(6)
+            .fill()
+            .map((item, index) => (
+                <div class="product-wrap">
+                <div class="image-wrap">
+                    {/* <img src={product.image} alt="상품 이미지" loading="lazy"/> */}
+                    {/* <button type="button"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘" /></button> */}
+                    <Skeleton width={"100%"} height={"100%"} />
+                </div>
+                <div class="info-wrap">
+                    <div class="delivery"><Skeleton height={20} width={"calc(100% + 10px)" }/></div>
+                    <div class="title"><Skeleton height={20} width={"calc(100% + 10px)" }/></div>
+                    {/* <div class="price">5,400 원~</div> */}
+                    <div className="product-price">
+                        <Skeleton height={20} width={"200px"}/>
+                        {/* <div className="discount-rate"><Skeleton/></div> */}
+                        {/* <div className="sales-price">{product.salesPrice}</div> */}
+                        {/* <div className={classnames("sales-price", {'sales-price-menu': check})}>{product.salesPrice}</div> */}
+                        {/* <div className="dimmed-price">{<Skeleton/>}</div> */}
+                    </div>                            
+                    {/* <p><Skeleton/></p> */}
+                    {/* {only===true &&
+                        <div class="only-wrap">
+                            <div class="only">Kurly Only</div>
+                        </div>
+                    } */}
+                </div>
+            </div>
+            ))}
+        </>
+    )
+}
 
 function Product ({product, check}) {
     // console.log(check);
@@ -57,104 +98,37 @@ function Product ({product, check}) {
     )
 }
 // sales-price-menu
-const ProductList = ({settings}) => {
+const ProductList = ({settings, onProducts}) => {
     // console.log('settings:' + settings)
-    const [products, setProducts] = useState([
-        {   
-            id: 0,
-            name: '[홀리차우] 스위트앤사워포크',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1657617005703l0.jpg',
-            discountRate: '25%',
-            salesPrice: '4,950원',
-            dimmedPrice: '12,900원',
-            delivery: '샛별배송',
-            description: '매콤달콤한 매력의 밥도둑',
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setProducts(dummyData);
+            // console.log(dummyData);
+            setLoading(false);
 
-            only: true,            
-        },
-        {   
-            id: 1,
-            name: '[자연에찬] 강화순열무 나박김치',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653034669549l0.jpeg',
-            // discountRate: '25%',
-            salesPrice: '4,950원',
-            // dimmedPrice: '12,900원',
-            delivery: '샛별배송',
-            only: false, 
-            description: '매콤달콤한 매력의 밥도둑',
-        },
-        {   
-            id: 2,
-            name: '[홀리차우] 스위트앤사워포크',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653040305679l0.jpg',
-            discountRate: '25%',
-            salesPrice: '4,950원',
-            dimmedPrice: '12,900원',
-            only: true, 
-            description: '매콤달콤한 매력의 밥도둑',
-        },
-        {   
-            id: 3,
-            name: '[홀리차우] 스위트앤사워포크',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1576637818415l0.jpg',
-            discountRate: '25%',
-            salesPrice: '4,950원',
-            dimmedPrice: '12,900원',
-            only: true, 
-            description: '매콤달콤한 매력의 밥도둑',
-        },
-        {   
-            id: 4,
-            name: '[홀리차우] 스위트앤사워포크',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1657617005703l0.jpg',
-            discountRate: '25%',
-            salesPrice: '4,950원',
-            dimmedPrice: '12,900원',
-            delivery: '샛별배송',
-            description: '매콤달콤한 매력의 밥도둑',
+        },3000);
+        return () => clearTimeout(timer);
+    } , [])
 
-            only: true,            
-        },
-        {   
-            id: 5,
-            name: '[자연에찬] 강화순열무 나박김치',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653034669549l0.jpeg',
-            // discountRate: '25%',
-            salesPrice: '4,950원',
-            // dimmedPrice: '12,900원',
-            delivery: '샛별배송',
-            only: true, 
-            description: '매콤달콤한 매력의 밥도둑',
-        },
-        {   
-            id: 6,
-            name: '[홀리차우] 스위트앤사워포크',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1653040305679l0.jpg',
-            discountRate: '25%',
-            salesPrice: '4,950원',
-            dimmedPrice: '12,900원',
-            only: true, 
-            description: '매콤달콤한 매력의 밥도둑',
-        },
-        {   
-            id: 7,
-            name: '[홀리차우] 스위트앤사워포크',
-            image:'https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1576637818415l0.jpg',
-            discountRate: '25%',
-            salesPrice: '4,950원',
-            dimmedPrice: '12,900원',
-            only: true, 
-            description: '매콤달콤한 매력의 밥도둑',
-        },
-    ])
-
+    // console.log(products)
+    // onProducts(products);
     // console.log(products);
     // const settings = {setting};
     // console.log(settings)
     return (
         settings==='best' ? (
+            // <Fragment>
+            //     {products.map(product => (<Product product={product} key={product.id} check={"best"}/>))}
+            // </Fragment>
+
             <Fragment>
-                {products.map(product => (<Product product={product} key={product.id} check={"best"}/>))}
+                {products.length > 0 ? (
+                    products.map(product => (<Product product={product} key={product.id} check={"best"}/>))
+                ) : (<SkeletonCard/>)}
+                {/* (products.map(product => (<Loading product={product}/>)))} */}
             </Fragment>
         ) : (
             <Fragment>
