@@ -8,8 +8,10 @@ import classnames from 'classnames';
 // 스켈레톤
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
-import dummyData from "../data";
-console.log(dummyData)
+import data from "../data";
+
+import { Link } from 'react-router-dom';
+// console.log(data.dummyData)
 
 function SkeletonCard () {
     return (
@@ -48,7 +50,7 @@ function SkeletonCard () {
 }
 
 function Product ({product, check}) {
-    // console.log(check);
+    // console.log(product.packingType);
     const only = product.only;
     return(
         // <div className={classnames("product-wrap", {'swiper-slide': check})}>
@@ -71,7 +73,18 @@ function Product ({product, check}) {
                 </div>
             </div>  
         </div> ) : (
-                    <div class="product-wrap">
+                    <div class="product-wrap"> {/* 베스트페이지 */}
+                        <Link to="/Detail" state={{
+                            name: product.name,
+                            image: product.image,
+                            discountRate: product.discountRate,
+                            salesPrice: product.salesPrice,
+                            dimmedPrice: product.dimmedPrice,
+                            delivery: product.delivery,
+                            only: product.only,
+                            description: product.description,
+                            packingType: product.packingType,
+                        }}>
                         <div class="image-wrap">
                             <img src={product.image} alt="상품 이미지" loading="lazy"/>
                             <button type="button"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBmaWxsPSIjMkEwMDM4IiBvcGFjaXR5PSIuNSIgY3g9IjIyLjUiIGN5PSIyMi41IiByPSIyMi41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuMDMgMTQuMzgpIiBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0ibTIwLjQ2IDIuOTEtMi4xNyA5LjIzSDUuODdMMy43MSAyLjkxeiIvPgogICAgICAgICAgICA8Y2lyY2xlIHN0cm9rZS13aWR0aD0iMS4yIiBjeD0iMTYuMzUiIGN5PSIxNi44NiIgcj0iMS43Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgc3Ryb2tlLXdpZHRoPSIxLjIiIGN4PSI3LjgyIiBjeT0iMTYuODYiIHI9IjEuNyIvPgogICAgICAgICAgICA8cGF0aCBzdHJva2Utd2lkdGg9IjEuNCIgZD0iTTAgMGgzLjAybDEuNDEgNS45OCIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="장바구니 아이콘" /></button>
@@ -93,6 +106,7 @@ function Product ({product, check}) {
                                 </div>
                             }
                         </div>
+                        </Link>
                     </div>
         )
     )
@@ -102,6 +116,8 @@ const ProductList = ({settings, onProducts}) => {
     // console.log('settings:' + settings)
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const dummyData = data.dummyData;
+    
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {

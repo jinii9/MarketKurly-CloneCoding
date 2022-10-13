@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Best from './components/Best';
 import Home from './components/Home';
 import Login from './components/Login';
+import Detail from './components/Detail';
 
 import "./css/Home.css";
 import "./css/Best.css";
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="/" element={<Home />}/>
             <Route path="/Best" element={<Best />}/>
             <Route path="/Login" element={<Login />}/>
+            <Route path="/Detail" element={<Detail />}/>
           </Routes>
         </BrowserRouter>
         {/* <Home /> */}

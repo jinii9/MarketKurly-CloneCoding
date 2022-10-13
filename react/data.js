@@ -7,9 +7,10 @@ const dummyData = [
         salesPrice: '4,950원',
         dimmedPrice: '12,900원',
         delivery: '샛별배송',
-        description: '매콤달콤한 매력의 밥도둑',
-
         only: true,            
+        description: '매콤달콤한 매력의 밥도둑',
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 1,
@@ -21,6 +22,8 @@ const dummyData = [
         delivery: '샛별배송',
         only: false, 
         description: '매콤달콤한 매력의 밥도둑',
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 2,
@@ -31,6 +34,8 @@ const dummyData = [
         dimmedPrice: '12,900원',
         only: true, 
         description: '매콤달콤한 매력의 밥도둑',
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 3,
@@ -41,6 +46,8 @@ const dummyData = [
         dimmedPrice: '12,900원',
         only: true, 
         description: '매콤달콤한 매력의 밥도둑',
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 4,
@@ -51,8 +58,9 @@ const dummyData = [
         dimmedPrice: '12,900원',
         delivery: '샛별배송',
         description: '매콤달콤한 매력의 밥도둑',
-
         only: true,            
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 5,
@@ -64,6 +72,8 @@ const dummyData = [
         delivery: '샛별배송',
         only: true, 
         description: '매콤달콤한 매력의 밥도둑',
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 6,
@@ -74,6 +84,8 @@ const dummyData = [
         dimmedPrice: '12,900원',
         only: true, 
         description: '매콤달콤한 매력의 밥도둑',
+        packingType: '냉장(종이포장)'
+
     },
     {   
         id: 7,
@@ -84,6 +96,23 @@ const dummyData = [
         dimmedPrice: '12,900원',
         only: true, 
         description: '매콤달콤한 매력의 밥도둑',
+        // packingType: '냉장(종이포장)'
+
     },
 ]
-export default dummyData;
+
+const loginData = [
+    {
+        id: 1,
+        loginId: 'seojin',
+        password: '1234',
+    },
+    {
+        id: 2,
+        loginId: 'josu',
+        password: '5678',
+    },
+]
+// export default {dummyData, loginData};
+export default {dummyData, loginData};
+
