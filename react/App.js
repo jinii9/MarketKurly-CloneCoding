@@ -8,6 +8,7 @@ import Detail from './components/Detail';
 import "./css/Home.css";
 import "./css/Best.css";
 import "./css/Login.css";
+import "./css/Header.css";
 
 class App extends Component {
   render() {

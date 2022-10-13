@@ -33,11 +33,13 @@ class Header extends Component {
                         <div className="relative-wrap">
                             <div className="header-wrap__item2">
                                 {/* <input type="text" id="gnb_search" placeholder="검색어를 입력해주세요" required value /> */}
-                                <input type="text" id="gnb_search" placeholder="검색어를 입력해주세요" />
+                                <input type="text" className="gnb_search" placeholder="검색어를 입력해주세요" />
                                 <button className="gnb_search-btn"></button>
+                                {/* <div><input type="text" className="gnb_search" placeholder="검색어를 입력해주세요" /></div> */}
+                                {/* <div><button className="gnb_search-btn"></button></div> */}
                             </div>
                             <div className="header-wrap__item3">
-                                <div className="place"></div>
+                                <button className="place"></button>
                                 <button className="heart" aria-label="찜하기" type="button"></button>
                                 <button className="market"></button>
                             </div>
@@ -50,7 +52,7 @@ class Header extends Component {
                 <div id="nav">
                     <div className="nav__category">
                         <span className="category-icon"></span>
-                        <span className="category-text">카테고리</span>
+                        <span className="menu menu-text">카테고리</span>
                     </div>
 
                     {/* <div> */}
