@@ -5,14 +5,15 @@ import Header from './Header';
 import data from '../data';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import { LoginAction } from '../reducers/loginReducer';
 // import 'sweetalert2/src/sweetalert2.scss'
 // import styles from '../css/Login.module.css';
 
+
 const Login = () => {
-    // const [login, setLogin] = useState({
-    //     id:"",
-    //     password:"",
-    // });
+
+    const dispatch = useDispatch();
     const loginData = data.loginData;
     const [loginId, setLoginId] = useState("");
     const [password, setPassword] = useState("");
@@ -30,25 +31,7 @@ const Login = () => {
         navigate("/");
     };
 
-    // useEffect(() => {
-        // console.log(loginData);
-        // loginData.map(info => (
-        //     if(info===loginId){
-        //         console.log('확인');
-        //     } else {
-                
-        //     }
-        // ))
 
-        // loginData.filter(info => info.loginId==loginId && info.password==password)
-        //     .map(test => (setCheck(true)));
-        
-        // console.log(check);
-
-
-        // validation체크
-        
-    // }, [loginId, password])
 
     const onClickLogin = () => {
    
@@ -68,6 +51,16 @@ const Login = () => {
             }
             
             if(check) {
+                // [리덕스] 로그인 성공 시, store 값을 로그인 성공한id,password로 넣어줘서 업뎃
+                dispatch(
+                    LoginAction({ // 바꿀 데이터 값 넣어주기
+                        loginId: loginId,
+                        password: password,
+                    }),
+                );
+                window.localStorage.setItem("token", "로그인 성공 임시token");
+                
+
                 goToHome();
             } else {
                 // alert('안맞음')

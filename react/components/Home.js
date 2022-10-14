@@ -4,9 +4,9 @@ import Header from './Header';
 import ProductList from './ProductList';
 import Slide from './Slide';
 import Timer from './Timer';
+import { useSelector } from "react-redux";
 
 const Home = () => {
-    
     return (
         <div>
             <div>

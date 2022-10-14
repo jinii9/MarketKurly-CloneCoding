@@ -197,13 +197,17 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Section = styled.div`
-    width: 1050px;
+    width: 105rem;
     margin: 0 auto;
-    padding-top: 180px;
+    padding-top: 18rem;
     /* border: 1px solid black; */
     
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width:1300px) {
+        background-color: bisque;
+    }
 
 `;
 const ImageWrap = styled.div`
@@ -222,9 +226,9 @@ const Delivery = styled.div`
     font-size: 1.4rem;
     font-weight: bold;
     line-height: 1.36;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.05rem;
     color: rgb(153,153, 153);
-    margin-bottom: 6px;
+    margin-bottom: 0.6rem;
 `;
 const TitleWrap = styled.div`
     display: flex;
@@ -235,20 +239,22 @@ const Title = styled.h2`
     font-size: 2.4rem;
     font-weight: 500;
     line-height: 1.36;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.05rem;
     /* border: 1px solid red; */
 `;
 const SharingButton = styled.div`
     width: 4rem;
     height: 4rem;
     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBzdHJva2U9IiNEREQiIGN4PSIyMCIgY3k9IjIwIiByPSIxOS41Ii8+CiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAuNSAxMSkiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIxLjgiPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIzIiBjeT0iOSIgcj0iMi4xIi8+CiAgICAgICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUuMTM3KSI+CiAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSI4Ljg2MyIgY3k9IjMiIHI9IjIuMSIvPgogICAgICAgICAgICAgICAgPHBhdGggc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgZD0iTTAgOC4xMzYgNi4zNjMgNC41Ii8+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgNS4xMzcgMTgpIj4KICAgICAgICAgICAgICAgIDxjaXJjbGUgY3g9IjguODYzIiBjeT0iMyIgcj0iMi4xIi8+CiAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBkPSJNMCA4LjEzNiA2LjM2MyA0LjUiLz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg==) 50% 50% no-repeat;
+    background-size: cover;
+    /* border: 1px solid black; */
 `;
 const Description = styled.p`
-    padding-top: 5px;
+    padding-top: 0.5rem;
     font-size: 1.4rem;
     color: rgb(181, 181, 181);
-    line-height: 19px;
-    letter-spacing: -0.5px;
+    line-height: 1.9rem;
+    letter-spacing: -0.05rem;
 `;
 const PriceWrap = styled.div`
     display: flex;
@@ -257,38 +263,38 @@ const DiscountRate = styled.div`
     font-size: 2.8rem;
     font-weight: bold;
     color: rgb(250, 98, 47);
-    padding-right: 9px;
+    padding-right: 0.9rem;
 `;
 const SalesPrice = styled.div`
     font-size: ${(props) => (props.salesPrice? '1.2rem' : '2.8rem')};
     font-weight: bold;
-    padding-top: ${(props) => (props.salesPrice? '9px' : '0px')};
+    padding-top: ${(props) => (props.salesPrice? '0.9rem' : '0rem')};
 `;
 const DimmedPrice = styled.div`
-    padding-top: 9px;
+    padding-top: 0.9rem;
     font-size: ${(props) => (props.dimmedValid? '1.2rem' : '1.6rem')};
-    margin-right: ${(props) => (props.dimmedValid? '4px' : '0px')};
+    margin-right: ${(props) => (props.dimmedValid? '0.4rem' : '0rem')};
     color: rgb(181, 181, 181);
     text-decoration: line-through;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.05rem;
 `;
 const Benefit = styled.div`
     font-size: 1.4rem;
     color: rgb(95, 0, 128);
-    line-height: 19px;
-    letter-spacing: -0.5px;
-    margin-top: 14px;
+    line-height: 1.9rem;
+    letter-spacing: -0.05rem;
+    margin-top: 1.4rem;
 `;
 const ProductInfoWrap = styled.div`
-    margin-top: 20px;
+    margin-top: 2rem;
 `;
 const ProductInfoList = styled.dl`
     border-top: 1px solid rgb(244, 244, 244);
     display: flex;
     /* width: 100%; */
-    padding: 17px 0px 18px;
+    padding: 1.7rem 0px 1.8rem;
     font-size: 1.4rem;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.05rem;
     /* border: 1px solid red; */
     justify-content: ${(props) => (props.totalPrice)? 'flex-end': ''};
     align-items: ${(props) => (props.totalPrice)? 'flex-end': ''};
@@ -298,37 +304,37 @@ const ProductInfoTitle = styled.dt`
     width: 12.8rem;
     /* height: 100%; */
     color: rgb(102, 102, 102);
-    line-height: 19px;
+    line-height: 1.9rem;
     /* border: 1px solid red; */
 `;
 const ProductInfoDes = styled.dd`
     /* border: 1px solid red; */
     flex: 2 1 0%;
     border: ${(props) => (props.NumberWrapValid)};
-    padding: ${(props) => (props.NumberWrapValid? '13px' : '0px')};
+    padding: ${(props) => (props.NumberWrapValid? '1.3rem' : '0rem')};
 
     & > p:first-child {
         /* border: 1px solid green; */
-        line-height: 19px;
+        line-height: 1.9rem;
     }
     & > p:nth-child(2) {
         font-size: 1.2rem;
         color: rgb(102, 102, 102);
-        padding-top: 4px;
-        line-height: 16px;
+        padding-top: 0.4rem;
+        line-height: 1.6rem;
     }
 `;
 const NumberWrap = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 12px;
+    margin-top: 1.2rem;
 
 `;
 const Number = styled.div`
     display: flex;
     align-items: center;
     border: 1px solid rgb(221, 223, 225);
-    border-radius: 3px;
+    border-radius: 0.3rem;
     width: 8.8rem;
     justify-content: space-between;
     
@@ -368,12 +374,12 @@ const NumberPrice = styled.div`
 const TotalPrice = styled.div`
 
     & > span:nth-child(1) {
-        padding-right: 12px;
+        padding-right: 1.2rem;
         font-size: 1.3rem;
         font-weight: bold;
     }
     & > span:nth-child(2) {
-        padding-right: 36px;
+        padding-right: 3.6rem;
         font-size: 3.2rem;
         font-weight: bold;
     }
@@ -389,3 +395,5 @@ const SelectButton = styled.div`
 
 const Top = styled.div`
 `;
+
+

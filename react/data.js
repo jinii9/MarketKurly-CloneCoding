@@ -106,11 +106,13 @@ const loginData = [
         id: 1,
         loginId: 'seojin',
         password: '1234',
+        name: '윤서진',
     },
     {
         id: 2,
         loginId: 'josu',
         password: '5678',
+        name: '조수빈',
     },
 ]
 // export default {dummyData, loginData};
