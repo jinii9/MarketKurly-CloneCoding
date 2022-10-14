@@ -1,16 +1,53 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import styled, { createGlobalStyle }  from 'styled-components';
+import data from '../data';
 
 const Header = () => {
-/////////////////////////////////////////////////////
-// 리덕스 코딩
-const { loginId, password } = useSelector((state) => state.LoginReducer); // 비구조할당으로 받아오기
+    
+    const [clientInfo, setClientInfo] = useState({
+       id:'',
+       loginId:'',
+       password:'',
+       name:'', 
+    });
+    /////////////////////////////////////////////////////
+    // 리덕스 코딩
+    const { loginId, password } = useSelector((state) => state.LoginReducer); // 비구조할당으로 받아오기
+    
+    const tokenCheck = localStorage.getItem('token');
+    // console.log(tokenCheck);
+    /////////////////////////////////////////////////////            
 
-const value = localStorage.getItem('token');
-console.log(value);
-/////////////////////////////////////////////////////            
+
+    useEffect(() => {
+        if(localStorage.getItem('token')) {
+            console.log('확인:' + localStorage.getItem('token'))
+            
+            const loginData = data.loginData;
+            // console.log(loginData)
+ 
+            const value = loginData.filter((info) => info.loginId===loginId);
+            console.log('value: ');
+            // console.log(value[0]);
+            // console.log(value[0].id);
+            
+            setClientInfo({
+                // ...clientInfo,
+                id: value[0].id,
+                loginId: value[0].loginId,
+                password: value[0].password,
+                name: value[0].name,
+            });
+            
+
+
+        }
+    },[])
+    console.log(clientInfo);
+
+
     return (
         <div id="header">
             {/* <Fragment> */}
@@ -23,19 +60,49 @@ console.log(value);
         {/*///////////////////////////////////////////////////// test */}
 
 
-                <div className="mem-info">
-                    <a href="#" className="sign">회원가입</a>
-                    <div className="line"></div>
+                <MemInfo>
+                    {/* <Sign>회원가입</Sign> */}
+                    <Line></Line>
                     {/* <a href="login.html" className="login">로그인</a> */}
-                    <div><Link to="/Login" style={{color:"black", textDecoration: "none"}}>로그인</Link></div>
-                    <div className="line"></div>
-                    <div className="service">
-                        <a href="#" className="service-btn">
+                    
+                    {/* <Login><Link to="/Login" style={{color:"black", textDecoration: "none"}}>로그인</Link></Login> */}
+                    {!localStorage.getItem('token') ? (
+                        <Fragment>
+                            <Sign>회원가입</Sign>
+                            <Line></Line>
+                            {/* <a href="login.html" className="login">로그인</a> */}
+                            
+                            <Login><Link to="/Login" style={{color:"black", textDecoration: "none"}}>로그인</Link></Login>
+                        </Fragment>
+                    ) : (
+                        <Fragment>
+                            {/* <Sign>회원가입</Sign> */}
+                            {/* <Line></Line> */}
+                            {/* <a href="login.html" className="login">로그인</a> */}
+                            
+                            {/* <Login tokenCheck={tokenCheck}><Link to="/Login" style={{color:"black", textDecoration: "none"}}>로그인</Link></Login> */}
+                            <Login tokenCheck={tokenCheck}>
+                                {clientInfo.name}
+                                <span style={{'padding-left':'0.5rem'}}> 님</span>
+                            </Login>
+                            
+                        </Fragment>
+                    )}
+
+                    <Line></Line>
+                    
+
+
+
+
+
+                    <Service>
+                        <Center href="#" className="service-btn">
                             고객센터
-                            <span className="arrow"></span>
-                        </a>
-                    </div>
-                </div>
+                            <Arrow></Arrow>
+                        </Center>
+                    </Service>
+                </MemInfo>
 
                 <div className="header-wrap">
                     <div className="header-wrap__item1">
@@ -94,3 +161,47 @@ console.log(value);
 };
 
 export default Header;
+
+//
+//
+//
+const MemInfo = styled.div`
+    /* width: 181.1px; */
+    /* height: 34.99px; */
+    display: flex;
+    position: absolute;
+    right: 0rem;
+    /* font-size: 1.2rem; */
+    margin-top: 1rem;
+    align-items: center;
+    z-index: 1;
+    /* border: 1px solid black; */
+`;
+const Sign = styled.a`
+    color: rgb(95, 0, 128);
+    /* border: 1px solid black; */
+    cursor: pointer;
+    font-size: 1.2rem;
+`;
+const Login= styled.div`
+    /* background-color: ${(props) => ((props.tokenCheck===null)? 'aqua' : '#ffffff')}; */
+    font-size: ${(props) => ((props.tokenCheck) ? '1.5rem':'')};
+`;
+const Line = styled.div`
+    width: 0.01rem;
+    height: 1.3rem;
+    margin: 0rem 1.2rem;
+    /* height: 1.0rem; */
+    background-color: rgb(217, 217, 217);
+`;
+const Service = styled.div``;
+const Center = styled.a``;
+const Arrow = styled.span`
+    width: 0.8rem;
+    height: 0.5rem;
+    background-image: url(https://res.kurly.com/pc/ico/1908/ico_down_16x10.png);
+    background-size: cover;
+    display: inline-block;
+    margin-left: 0.2rem;
+    margin-bottom: 0.1rem;
+`;
