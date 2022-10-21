@@ -1,16 +1,17 @@
 import {React, useEffect, useState} from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import ScrollPage from './ScrollPage';
 import {useLocation} from 'react-router-dom';
 import { NumericFormat } from 'react-number-format';
 import styled, { createGlobalStyle }  from 'styled-components';
-
 
 const Detail = () => {
 
 const location = useLocation();
 const item = location.state;
-// console.log(item);
+console.log('item');
+console.log(item);
 
 const [count, setCount] = useState(1);
 const [total, setTotal] = useState(item.salesPrice);
@@ -173,8 +174,12 @@ const minCount = () => {
                         </ProductInfoList>
                     </ProductInfoWrap>
                 </ProductWrap>
+                <ScrollPage />
             </Section>
 
+            {/* 스크롤페이지.js 부분 */}
+            {/* <ScrollPage /> */}
+            
             <Footer />
             
         
@@ -200,13 +205,16 @@ const Section = styled.div`
     width: 105rem;
     margin: 0 auto;
     padding-top: 18rem;
+    padding-bottom: 6rem;
     /* border: 1px solid black; */
     
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 
     @media screen and (max-width:1300px) {
-        background-color: bisque;
+        /* background-color: bisque; */
+        html{font-size: 50%;}
     }
 
 `;

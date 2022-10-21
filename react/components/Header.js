@@ -174,7 +174,7 @@ const MemInfo = styled.div`
     /* font-size: 1.2rem; */
     margin-top: 1rem;
     align-items: center;
-    z-index: 1;
+    z-index: 2;
     /* border: 1px solid black; */
 `;
 const Sign = styled.a`

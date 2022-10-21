@@ -3,15 +3,52 @@ import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import data from '../data';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { LoginAction } from '../reducers/loginReducer';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 // import 'sweetalert2/src/sweetalert2.scss'
 // import styles from '../css/Login.module.css';
-
+// import { REST_API_KEY, REDIRECT_URI } from './KakaoLoginData';
+import {REST_API_KEY, REDIRECT_URI, KAKAO_AUTH_URL} from '../KakaoLoginData';
 
 const Login = () => {
+    const navigate=useNavigate();
+    const goToHome = () => {
+        navigate("/");
+    };
+
+    // kakao
+    const location = useLocation();
+    const KAKAO_CODE = location.search.split('=')[1];
+
+    const getKakaoToken = () => {
+        fetch(`https://kauth.kakao.com/oauth/token`,{
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: `grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`,
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.access_token) {
+                localStorage.setItem('kakaoToken', data.access_token);
+                goToHome();
+            }
+            else {
+                // goToHome();
+            }
+        });
+
+    }
+    
+    useEffect(() => {
+        if(!location.search) return;
+        console.log('인가코드: ' + KAKAO_CODE);
+        getKakaoToken();
+    },[])
+    // 
 
     const dispatch = useDispatch();
     const loginData = data.loginData;
@@ -25,11 +62,6 @@ const Login = () => {
     const inputPassword = (e) => {
         setPassword(e.target.value);
     }
-
-    const navigate=useNavigate();
-    const goToHome = () => {
-        navigate("/");
-    };
 
 
 
@@ -112,6 +144,14 @@ const Login = () => {
                             <input onChange={inputPassword} type="text" name="password" placeholder="비밀번호를 입력해주세요" className="login__info" />
                         </div>
                         <div className="find-box">
+                            {/* <Social><Link to="/kakao" style={{color:"black", textDecoration: "none"}}>카카오</Link></Social> */}
+                            {/* <Social onClick={handleKaKaoLogin}>카카오</Social> */}
+                            <KaKao>
+                                <a href={KAKAO_AUTH_URL}>
+                                        카카오로그인
+                                </a>
+                            </KaKao>
+
                             <div className="find">아이디 찾기</div>
                             <div className="line"></div>
                             <div className="find">비밀번호 찾기</div>
@@ -133,3 +173,8 @@ const Login = () => {
 };
 
 export default Login;
+
+const KaKao = styled.div`
+    margin: 0rem 1rem;
+    /* background-color: yellow; */
+`;

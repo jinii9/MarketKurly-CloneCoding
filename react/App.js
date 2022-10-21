@@ -21,6 +21,7 @@ class App extends Component {
             <Route path="/Best" element={<Best />}/>
             <Route path="/Login" element={<Login />}/>
             <Route path="/Detail" element={<Detail />}/>
+            {/* <Route path="/kakao" element={<Kakao />}/> */}
           </Routes>
         </BrowserRouter>
         {/* <Home /> */}
