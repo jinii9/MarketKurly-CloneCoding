@@ -123,7 +123,9 @@ const Header = () => {
                         <div className="header-wrap__item3">
                             <button className="place"></button>
                             <button className="heart" aria-label="찜하기" type="button"></button>
-                            <button className="market"></button>
+                            {/* <button className="market"><Link to="/Basket" style={{color:"black", textDecoration: "none"}}></Link></button> */}
+                            <Link to="/Basket" style={{color:"black", textDecoration: "none"}}><button className="market"></button></Link>
+
                         </div>
                     </div>
                 </div>

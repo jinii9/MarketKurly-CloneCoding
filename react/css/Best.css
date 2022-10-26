@@ -162,6 +162,9 @@ a {
     position: absolute;
     right: 16px;
     bottom: 16px;
+    z-index: 100;
+    /* cursor: pointer; */
+    /* pointer-events: none; */
 }
 .product-wrap .info-wrap {
     padding: 14px 10px 0px 0px;
