@@ -4,10 +4,10 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Footer from './Footer';
 import { useSelector } from 'react-redux';
 
-function BasketItem ({item, onBasketFinalPrice}) {
+function BasketItem ({item}) {
     const [count, setCount] = useState(1);
     const [total, setTotal] = useState(item.salesPrice);
-    const [finalPrice, setFinalPrice] = useState();
+    // const [finalPrice, setFinalPrice] = useState();
 
     // onBasketFinalPrice();
 
@@ -78,11 +78,7 @@ function BasketItem ({item, onBasketFinalPrice}) {
 
 const Basket = () => {
     const {info} = useSelector((state) => state.BasketReducer);
-    // console.log(info);
-
-    const onBasketFinalPrice = (data) => {
-        // console.log(data);
-    };
+    const [checkAll, setCheckAll] = useState(false);    
 
     return (
         <>
@@ -103,7 +99,7 @@ const Basket = () => {
                         <ItemList>
                             {/* 제품 나열 */}
                             {info.map((item) => (
-                                <ul key={item.id}><BasketItem item={item} onBasketFinalPrice={onBasketFinalPrice}/></ul>
+                                <ul key={item.id}><BasketItem item={item}/></ul>
                             ))}
                             {/* <Label></Label> */}
                         </ItemList>

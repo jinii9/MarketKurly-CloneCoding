@@ -72,8 +72,6 @@ function Product ({product, check}) {
     
     
 
-
-
     const only = product.only;
     return(
         // <div className={classnames("product-wrap", {'swiper-slide': check})}>
@@ -97,7 +95,8 @@ function Product ({product, check}) {
             </div>  
         </div> ) : (
                     <div class="product-wrap"> {/* 베스트페이지 */}
-                        <Link to="/Detail" state={{
+                        {/* <Link to="/Detail" state={{ */}
+                        <Link to={`/Detail/${product.id}`} state={{
                             name: product.name,
                             image: product.image,
                             discountRate: product.discountRate,
