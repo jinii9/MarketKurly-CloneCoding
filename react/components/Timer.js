@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
 // const countDownTimer = function (id, date) {
 //     var _vDate = new Date(date); // 전달 받은 일자
@@ -37,14 +37,14 @@ import React, { Component } from 'react';
 
 // countDownTimer('timer', dateObj);
 
-class timer extends Component {
-    render() {
-        return (
-            <div>
-                <span class="time-count__timer" id="timer"></span>
-            </div>
-        );
-    }
-}
+// class timer extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <span class="time-count__timer" id="timer"></span>
+//             </div>
+//         );
+//     }
+// }
 
-export default timer;
+// export default timer;

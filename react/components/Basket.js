@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import styled, { createGlobalStyle } from 'styled-components';
 import Footer from './Footer';
 import { useSelector } from 'react-redux';
 
-function BasketItem ({item}) {
+function BasketItem ({item, checkAll, setCheckList}) {
     const [count, setCount] = useState(1);
     const [total, setTotal] = useState(item.salesPrice);
     // const [finalPrice, setFinalPrice] = useState();
 
     // onBasketFinalPrice();
-
+    ////////////////////////////////////////////// 가격 계산 //////////////////////////////////////////////
     let originalPrice = item.salesPrice;
     originalPrice = originalPrice.substring(0, originalPrice.length-1).replace(",","");
     originalPrice = parseInt(originalPrice, 10);
@@ -45,11 +45,42 @@ function BasketItem ({item}) {
         }
             
     }
+    ////////////////////////////////////////////// checkbox //////////////////////////////////////////////
+
+    // const [checkList, setCheckList] = useState({
+    //     info: [],
+    // })
+    // const [checkItems, setCheckItems] = useState([]);
+
+    const onHandleCheck = (e, item) => {
+        if(e.target.checked) {
+            console.log('O')
+            console.log(item);
+            let dimmed = item.dimmedPrice;
+            dimmed = dimmed.substring(0, dimmed.length-1).replace(",","");
+            dimmed = parseInt(dimmed, 10);
+
+            let sales = item.salesPrice;
+            sales = sales.substring(0, sales.length-1).replace(",","");
+            sales = parseInt(sales, 10);
+
+            // setCheckList({info: checkList.info.concat(item)});
+            // setCheckList(prev => [...prev, item.salesPrice]);
+            setCheckList(prev => [...prev, {id:item.id, dimmedPrice: dimmed, salesPrice: sales,}]);
+            // setCheckItems(prev => [...prev, item.salesPrice]);
+        }
+        else {
+            console.log('X')
+            // setCheckItems(checkItems.filter((el) => el !== item.id));
+        }
+    }
+    // console.log("checkItems")
+    // console.log(checkItems)
 
     return(
         <ItemWrap>
             <Label>
-                <input type="checkbox"></input>
+                <input type="checkbox" onChange={(e) => onHandleCheck(e, item)}></input>
             </Label>
             <ItemImg><img src={item.image} /></ItemImg>
             <ItemTitle>{item.name}</ItemTitle>
@@ -79,6 +110,40 @@ function BasketItem ({item}) {
 const Basket = () => {
     const {info} = useSelector((state) => state.BasketReducer);
     const [checkAll, setCheckAll] = useState(false);    
+    // const [checkList, setCheckList] = useState({
+    //     info: [],
+    // })
+    ///////////////////////////상품계산////////////////////////////////
+    const [checkList, setCheckList] = useState([]);
+    console.log("checkList")
+    console.log(checkList)
+
+    // 상품금액
+    // let BasketDimmedPrice = 0;
+    const [BasketDimmedPrice, setBasketDimmedPrice] = useState(0);
+    // 상품할인금액
+    // let BasketSalesPrice = 0;
+    // 결제예정금액
+    // let BasketFinalPrice = 0;
+    const [BasketFinalPrice, setBasketFinalPrice] = useState(0);
+
+    // useEffect
+    useEffect(() => {
+        let dimmed = 0;
+        checkList.map((data) => (
+            dimmed += data.dimmedPrice
+        ));
+
+        setBasketDimmedPrice(dimmed);
+        // 
+        let final = 0;
+        checkList.map((data) => (
+            final += data.salesPrice
+        ));
+        setBasketFinalPrice(final);
+
+    }, [checkList]);
+
 
     return (
         <>
@@ -92,14 +157,14 @@ const Basket = () => {
                             <Label>
                                 <input type="checkbox"></input>
                             </Label>
-                            <SelectedAll>전체선택</SelectedAll>
+                            <SelectedAll onClick={() => {setCheckAll(true);}}>전체선택</SelectedAll>
                             <Line />
                             <DeletedBtn>선택삭제</DeletedBtn>
                         </SelectedWrap>
                         <ItemList>
                             {/* 제품 나열 */}
                             {info.map((item) => (
-                                <ul key={item.id}><BasketItem item={item}/></ul>
+                                <ul key={item.id}><BasketItem item={item} checkAll={checkAll} setCheckList={setCheckList}/></ul>
                             ))}
                             {/* <Label></Label> */}
                         </ItemList>
@@ -117,20 +182,20 @@ const Basket = () => {
                         </DeliveryWrap>
                         <PriceWrap>
                             <BasketPrice>
-                                <span>상품금액</span>
-                                <span>원</span>
+                                <span>할인 전 금액</span>
+                                <span>{BasketDimmedPrice} 원</span>
                             </BasketPrice>
-                            <BasketPrice>
+                            {/* <BasketPrice>
                                 <span>상품할인금액</span>
-                                <span>원</span>
-                            </BasketPrice>
-                            <BasketPrice>
-                                <span>상품할인금액</span>
-                                <span>원</span>
-                            </BasketPrice>
+                                <span>{BasketSalesPrice} 원</span>
+                            </BasketPrice> */}
+                            {/* <BasketPrice>
+                                <span>배송비</span>
+                                <span>0 원</span>
+                            </BasketPrice> */}
                             <BasketPrice final>
                                 <span>결제예정금액</span>
-                                <span>원</span>
+                                <span>{BasketFinalPrice} 원</span>
                             </BasketPrice>
                         </PriceWrap>
                         <OrderWrap>
@@ -214,12 +279,24 @@ const ItemWrap = styled.li`
     padding: 2rem 0rem;
 `;
 const Label = styled.div`
+
     & input {
+        border: 0;
+        outline: 0;
         appearance: none;
         width: 2.4rem;
         height: 2.4rem;
         margin-right: 1.2rem;
         background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgc3Ryb2tlPSIjREREIj4KICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjY5LjAwMDAwMCwgLTEwOTAuMDAwMDAwKSB0cmFuc2xhdGUoMTAwLjAwMDAwMCwgOTM2LjAwMDAwMCkgdHJhbnNsYXRlKDU1My4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMS41Ii8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K") no-repeat;
+        background-size: contain ;
+        cursor: pointer;
+    }
+
+    & input:checked {
+        border: 0;
+        outline: 0;
+        background-color: red;
+        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ni4wMDAwMDAsIC0xMDkwLjAwMDAwMCkgdHJhbnNsYXRlKDEwMC4wMDAwMDAsIDkzNi4wMDAwMDApIHRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE0Mi4wMDAwMDApIHRyYW5zbGF0ZSgxNi4wMDAwMDAsIDEyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMiIgZmlsbD0iIzVGMDA4MCIvPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBzdHJva2U9IiNGRkYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGQ9Ik03IDEyLjY2N0wxMC4zODUgMTYgMTggOC41Ii8+CiAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K") no-repeat;
         background-size: contain ;
     }
 `;

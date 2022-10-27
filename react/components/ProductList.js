@@ -63,6 +63,7 @@ function Product ({product, check}) {
                 name: item.name,
                 image: item.image,
                 salesPrice: item.salesPrice,
+                dimmedPrice: item.dimmedPrice,
                 packingType: item.packingType,
             }),
         );

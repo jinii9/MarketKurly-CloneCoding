@@ -187,7 +187,7 @@ const Sign = styled.a`
 `;
 const Login= styled.div`
     /* background-color: ${(props) => ((props.tokenCheck===null)? 'aqua' : '#ffffff')}; */
-    font-size: ${(props) => ((props.tokenCheck) ? '1.5rem':'')};
+    font-size: ${(props) => ((props.tokenCheck) ? '1.3rem':'1.2rem')};
 `;
 const Line = styled.div`
     width: 0.01rem;
@@ -197,7 +197,9 @@ const Line = styled.div`
     background-color: rgb(217, 217, 217);
 `;
 const Service = styled.div``;
-const Center = styled.a``;
+const Center = styled.a`
+    font-size: 1.2rem;
+`;
 const Arrow = styled.span`
     width: 0.8rem;
     height: 0.5rem;

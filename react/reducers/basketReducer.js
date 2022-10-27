@@ -19,6 +19,7 @@ const BasketReducer = (state=initialState, action) => {
                         name: action.data.name,
                         image: action.data.image,
                         salesPrice: action.data.salesPrice,
+                        dimmedPrice: action.data.dimmedPrice,
                         packingType: action.data.packingType,
                     })
                 }
